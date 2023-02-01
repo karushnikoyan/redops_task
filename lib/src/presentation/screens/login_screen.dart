@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
         children: [
           Container(height: 444,
             decoration: BoxDecoration(),),
-          Container(height: 300,color: Colors.blue,),
+          Container(height: 300,color: Colors.green,),
         ],
       ),
 
