@@ -23,7 +23,7 @@ class RedopsTextFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ReactiveTextField(
       decoration:  InputDecoration(
-        labelText: "Enter $labelText",
+        labelText: "$labelText",
         labelStyle: TextStyle(color: Konsts.KDarkColor,fontSize: 20,fontWeight: FontWeight.bold),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(14.0)),

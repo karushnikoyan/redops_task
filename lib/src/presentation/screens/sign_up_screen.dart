@@ -88,7 +88,7 @@ class SignUpScreen extends StatelessWidget {
                     //   // controller: provider.nameController ,
                     // ),
                     RedopsTextFiled(
-                      labelText: "First Name",
+                      labelText: "Enter your first name",
                       hintText: "Enter your first name ",
                       formControlName: "name",
                     ),
@@ -96,8 +96,8 @@ class SignUpScreen extends StatelessWidget {
                       height: 30,
                     ),
                     RedopsTextFiled(
-                      labelText: "Last Name",
-                      hintText: "Enter your Last namee ",
+                      labelText: "Enter your last name",
+                      hintText: "Enter your last name ",
                       formControlName: "name",
                     ),
                     SizedBox(
@@ -105,15 +105,26 @@ class SignUpScreen extends StatelessWidget {
                     ),
 
                     RedopsTextFiled(
-                      labelText: "Email",
+                      labelText: "Enter your email",
                       hintText: "Enter your emile ",
                       formControlName: "email",
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Please use a personal email address.",
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          color: Konsts.KDarkColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: 30,
                     ),
                     RedopsTextFiled(
-                      labelText: "Phone Number",
+                      labelText: "Enter your phone number",
                       hintText: "Enter your phone number ",
                       formControlName: "phoneNumber",
                     ),
@@ -122,8 +133,8 @@ class SignUpScreen extends StatelessWidget {
                     ),
 
                     RedopsTextFiled(
-                      labelText: "Password",
-                      hintText: "Enter Your Password ",
+                      labelText: "Enter your password",
+                      hintText: "Enter your password ",
                       formControlName: "password",
                     ),
                     Text(
@@ -139,29 +150,34 @@ class SignUpScreen extends StatelessWidget {
                     ),
 
                     RedopsTextFiled(
-                      labelText: "Password",
-                      hintText: "Enter Your Password ",
+                      labelText: "Confirm your password",
+                      hintText: "Enter your password ",
                       formControlName: "password",
                     ),
-                    Text(
-                      "Password must contain at least 8 characters, at least 1 capital, 1 lowercase, 1 special character.",
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        color: Konsts.KDarkColor,
-                        fontWeight: FontWeight.bold,
+
+                    RichText(
+                      text: TextSpan(
+                        text:
+                            'By clicking Create Account I  acknowledge that  I have read and accepted the ',
+                        style: TextStyle(
+                          color: Konsts.KDarkColor,
+                        ),
+                        children: const <TextSpan>[
+                          TextSpan(
+                              text: 'Terms and Conditions',
+                              style: TextStyle(
+                              decoration: TextDecoration.underline,
+                                color: Konsts.KBlueAccentColor,
+                              )),
+                          TextSpan(
+                            text: '.',
+                            style: TextStyle(
+                              color: Konsts.KDarkColor,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-
-                    Align(
-                        alignment: Alignment.topRight,
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text("Forgot Password",
-                              style: TextStyle(
-                                  color: Konsts.KDarkColor,
-                                  decoration: TextDecoration.underline,
-                                  fontWeight: FontWeight.bold)),
-                        )),
                     // ElevatedButton(
                     SizedBox(
                       height: 26,
@@ -174,9 +190,9 @@ class SignUpScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Konsts.KBlueAccentColor),
-                        child: Center(
+                        child: const Center(
                             child: Text(
-                          "Login",
+                          "Creat Account",
                           style: TextStyle(
                               color: Konsts.KDarkColor,
                               fontWeight: FontWeight.bold),
@@ -184,25 +200,7 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Don't have an account?",
-                          style: TextStyle(
-                              color: Konsts.KDarkColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text("Create an account",
-                              style: TextStyle(
-                                  color: Konsts.KBlueAccentColor,
-                                  decoration: TextDecoration.underline,
-                                  fontWeight: FontWeight.bold)),
-                        )
-                      ],
-                    ),
+
                   ],
                 ),
               ),

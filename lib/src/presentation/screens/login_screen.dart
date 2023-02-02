@@ -85,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                     // ),
 
                     RedopsTextFiled(
-                      labelText: "Email",
+                      labelText: "Enter your email",
                       hintText: "Enter Your Emile ",
                       formControlName: "email",
                     ),
@@ -93,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                       height: 30,
                     ),
                     RedopsTextFiled(
-                      labelText: "Password",
+                      labelText: "Enter your password",
                       hintText: "Enter Your Password ",
                       formControlName: "password",
                     ),
@@ -150,7 +150,7 @@ class LoginScreen extends StatelessWidget {
 
 
                           },
-                          child: Text("Create an account",
+                          child: Text("Create an account.",
                               style: TextStyle(
                                 color: Konsts.KBlueAccentColor,
                                 decoration: TextDecoration.underline,
