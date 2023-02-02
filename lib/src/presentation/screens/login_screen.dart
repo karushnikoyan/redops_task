@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:redops_test/src/core/styls.dart';
 import 'package:redops_test/src/data/constants.dart';
+import 'package:redops_test/src/presentation/screens/sign_up_screen.dart';
 import 'package:redops_test/src/presentation/widgets/redops_text_flide.dart';
 
 import '../widgets/top_logo_container.dart';
@@ -43,13 +44,13 @@ class LoginScreen extends StatelessWidget {
               height: 40,
             ),
             Text(
-              "Registration",
+              "Welcome back!",
               style: AppTextStyle.headerStyle,
             ),
             ReactiveForm(
               formGroup: form,
               child: Padding(
-                padding: EdgeInsets.all(44.0),
+                padding: EdgeInsets.only(left: 44,right: 44,top: 26),
                 child: Column(
                   children: [
                     // ReactiveTextField(
@@ -140,7 +141,15 @@ class LoginScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold
                         ),),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SignUpScreen()),
+                            );
+
+
+
+                          },
                           child: Text("Create an account",
                               style: TextStyle(
                                 color: Konsts.KBlueAccentColor,
