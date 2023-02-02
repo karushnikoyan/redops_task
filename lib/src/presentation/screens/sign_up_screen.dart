@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:redops_test/src/presentation/screens/profile_screen.dart';
 
 import '../../core/styls.dart';
 import '../../data/constants.dart';
@@ -183,7 +184,12 @@ class SignUpScreen extends StatelessWidget {
                       height: 26,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfileScreen()),
+                        );
+                      },
                       child: Container(
                         width: 250,
                         height: 43,
