@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:redops_test/src/data/constants.dart';
 import 'package:redops_test/src/presentation/screens/login_screen.dart';
 
 void main() {
@@ -14,7 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
       theme: ThemeData(
-        primarySwatch: Colors.green,
       ),
       home: LoginScreen(),
     );
