@@ -43,7 +43,8 @@ class SignUpScreen extends StatelessWidget {
       Validators.minLength(8),
       Validators.number,
     ])
-  }, validators: [
+  },
+      validators: [
     Validators.mustMatch('password', 'passwordConfirmation'),
   ]);
 
@@ -193,17 +194,21 @@ class SignUpScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () async {
                         // form.markAllAsTouched();
-                        // if (form.valid) {
+                        if (form.valid) {
                           print("aaa");
                         RedopsProvider provider =
                             context.read<RedopsProvider>();
                         final user = await provider.register();
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) {
-                          return LoginScreen();
-                        }));
-                        },
-                      // },
+                        // Navigator.of(context)
+                        //     .push(MaterialPageRoute(builder: (context) {
+                        //   return LoginScreen();
+                        // }));
+                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                              LoginScreen()), (Route<dynamic> route) => false);
+
+
+                        };
+                      },
                       child: Container(
                         width: 250,
                         height: 43,

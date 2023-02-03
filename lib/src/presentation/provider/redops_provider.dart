@@ -29,10 +29,30 @@ class RedopsProvider with ChangeNotifier{
   TextEditingController logInPasswordController = TextEditingController();
 
 
-  Future<User?> login() async{
+
+  // Future<User?> login() async{
+  //   print(logInEmailController.text);
+  //   print("))))))))))))))))))))))))))++++++");
+  //   user = User(
+  //     email: logInEmailController.text,
+  //     password: logInPasswordController.text.trim()
+  //   );
+  //   // user!.email = logInEmailController.text;
+  //   // user!.password = logInPasswordController.text;
+  //   user = await mainApi.signIn(user!);
+  //
+  //   if(user?.token != null){
+  //     _storage.saveToken(user!.token!);
+  //   }
+  //   return user;
+  //
+  // }
+    Future<User?> login() async{
+    print(logInEmailController.text);///sig tamam kuda
+    print("))))))))))))))))))))))))))++++++");
     user = User();
-    user!.email = logInEmailController.text.trim();
-    user!.password = logInPasswordController.text.trim();
+    user!.email = logInEmailController.text;
+    user!.password = logInPasswordController.text;
     user = await mainApi.signIn(user!);
 
     if(user?.token != null){
@@ -50,6 +70,9 @@ class RedopsProvider with ChangeNotifier{
       password: passwordController.text.trim(),
       phoneNumber: phoneNumberController.text.trim(),
     );
+    print("###################################################################__");
+    print(user?.firstName);
+    print(user?.lastName);
     user = await mainApi.registerUser(user!);
     if(user?.token != null){
       _storage.saveToken(user!.token!);

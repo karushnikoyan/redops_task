@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
   final form = FormGroup({
-    "email": FormControl(
+    "loginEmail": FormControl(
       validators: [
         Validators.required,
         Validators.pattern(RegExp(
@@ -22,12 +22,8 @@ class LoginScreen extends StatelessWidget {
         Validators.minLength(2)
       ],
     ),
-    "name": FormControl(validators: [
-      Validators.required,
-      Validators.minLength(2),
-      Validators.pattern(RegExp(r'^[a-zA-Z ]+$'))
-    ]),
-    "password": FormControl(validators: [
+
+    "loginPassword": FormControl(validators: [
       Validators.required,
       Validators.minLength(8),
       Validators.pattern(
@@ -37,7 +33,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RedopsProvider provider = context.read<RedopsProvider>();
+    RedopsProvider provider = context.watch<RedopsProvider>();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -59,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                     RedopsTextFiled(
                       labelText: "Enter your email",
                       hintText: "Enter Your Emile ",
-                      formControlName: "email",
+                      formControlName: "loginEmail",
                       controller: provider.logInEmailController,
                       // controller: ,
                     ),
@@ -69,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                     RedopsTextFiled(
                       labelText: "Enter your password",
                       hintText: "Enter Your Password ",
-                      formControlName: "password",
+                      formControlName: "loginPassword",
                       controller: provider.logInPasswordController,
                       obscureText: context.watch<RedopsProvider>().obscureIcon,
                       suffixIcon: GestureDetector(
@@ -98,17 +94,27 @@ class LoginScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () async {
-                        final user = await provider.login();
-                        // print(user?.toJson());
-                        if (user != null) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfileScreen(
-                                user: user,
+                        RedopsProvider provider =
+                        context.read<RedopsProvider>();
+                          final user = await provider.login();
+                          print("________________________________");
+                          print(user!.email);
+                        if(form.valid) {
+                          print("auuuuuuuuu!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+                          // print(user?.toJson());
+
+                          if (user != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ProfileScreen(
+                                      user: user,
+                                    ),
                               ),
-                            ),
-                          );
+                            );
+                          }
                         }
 
                       },
