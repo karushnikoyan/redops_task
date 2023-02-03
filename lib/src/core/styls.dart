@@ -8,7 +8,4 @@ import 'package:flutter/material.dart';
   const AppTextStyle._();
   static const TextStyle headerStyle = TextStyle(fontSize: 32,fontWeight: FontWeight.bold);
 
-
-
-
 }

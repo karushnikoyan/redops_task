@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:redops_test/src/core/styls.dart';
 import 'package:redops_test/src/data/constants.dart';
+import 'package:redops_test/src/presentation/provider/redops_provider.dart';
+import 'package:redops_test/src/presentation/screens/profile_screen.dart';
 import 'package:redops_test/src/presentation/screens/sign_up_screen.dart';
 import 'package:redops_test/src/presentation/widgets/redops_text_flide.dart';
 
@@ -35,84 +37,79 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RedopsProvider provider = context.read<RedopsProvider>();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TopLogoContainer(),
-            SizedBox(
+            const TopLogoContainer(),
+            const SizedBox(
               height: 40,
             ),
-            Text(
+            const Text(
               "Welcome back!",
               style: AppTextStyle.headerStyle,
             ),
             ReactiveForm(
               formGroup: form,
               child: Padding(
-                padding: EdgeInsets.only(left: 44,right: 44,top: 26),
+                padding: const EdgeInsets.only(left: 44, right: 44, top: 26),
                 child: Column(
                   children: [
-                    // ReactiveTextField(
-                    //   decoration: const InputDecoration(
-                    //     labelText: "Enter name",
-                    //     labelStyle: TextStyle(
-                    //         color: Konsts.KDarkColor,
-                    //         fontSize: 20,
-                    //         fontWeight: FontWeight.bold),
-                    //     border: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.all(Radius.circular(14.0)),
-                    //       // borderSide: BorderSide(width: 3, color: Konsts.KDarkColor),
-                    //     ),
-                    //     enabledBorder: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.all(Radius.circular(14.0)),
-                    //       borderSide: BorderSide(
-                    //           width: 1.8,
-                    //           color: Konsts.KDarkColor), //<-- SEE HERE
-                    //     ),
-                    //     hintText: 'Enter a search term',
-                    //   ),
-                    //   formControlName: 'name',
-                    //   validationMessages: {
-                    //     ValidationMessage.required: (error) =>
-                    //         "Please Fill Your Name",
-                    //     ValidationMessage.pattern: (error) =>
-                    //         "Write correct name",
-                    //     ValidationMessage.minLength: (error) =>
-                    //         "Minimum length is 2",
-                    //   },
-                    //   // controller: provider.nameController ,
-                    // ),
-
                     RedopsTextFiled(
                       labelText: "Enter your email",
                       hintText: "Enter Your Emile ",
                       formControlName: "email",
+                      controller: provider.logInEmailController,
+                      // controller: ,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     RedopsTextFiled(
                       labelText: "Enter your password",
                       hintText: "Enter Your Password ",
                       formControlName: "password",
+                      controller: provider.logInPasswordController,
+                      obscureText: context.watch<RedopsProvider>().obscureIcon,
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          provider.changeIcon();
+                        },
+                        child: context.watch<RedopsProvider>().obscureIcon
+                            ? Image.asset("assets/Group 26.png")
+                            : Image.asset("assets/Vector.png"),
+                      ),
                     ),
 
                     Align(
                         alignment: Alignment.topRight,
                         child: TextButton(
                           onPressed: () {},
-                          child: Text("Forgot Password",
+                          child: const Text("Forgot Password",
                               style: TextStyle(
-                                color: Konsts.KDarkColor,
-                                decoration: TextDecoration.underline,
-                                fontWeight: FontWeight.bold
-                              )),
+                                  color: RedopsConsts.KDarkColor,
+                                  decoration: TextDecoration.underline,
+                                  fontWeight: FontWeight.bold)),
                         )),
                     // ElevatedButton(
-                    SizedBox(height: 26,),
+                    const SizedBox(
+                      height: 26,
+                    ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () async {
+                        final user = await provider.login();
+                        // print(user?.toJson());
+                        if (user != null) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileScreen(
+                                user: user,
+                              ),
+                            ),
+                          );
+                        }
 
                       },
                       child: Container(
@@ -120,44 +117,40 @@ class LoginScreen extends StatelessWidget {
                         height: 43,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Konsts.KBlueAccentColor),
-                        child: Center(
+                            color: RedopsConsts.KBlueAccentColor),
+                        child: const Center(
                             child: Text(
                           "Login",
                           style: TextStyle(
-                              color: Konsts.KDarkColor,
-                              fontWeight: FontWeight.bold
-                          ),
+                              color: RedopsConsts.KDarkColor,
+                              fontWeight: FontWeight.bold),
                         )),
                       ),
                     ),
-                    
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Don't have an account?",
-                        style: TextStyle(
-                          color: Konsts.KDarkColor,
-                          fontWeight: FontWeight.bold
-                        ),),
+                        const Text(
+                          "Don't have an account?",
+                          style: TextStyle(
+                              color: RedopsConsts.KDarkColor,
+                              fontWeight: FontWeight.bold),
+                        ),
                         TextButton(
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => SignUpScreen()),
+                              MaterialPageRoute(
+                                  builder: (context) => SignUpScreen()),
                             );
-
-
-
                           },
-                          child: Text("Create an account.",
+                          child: const Text("Create an account.",
                               style: TextStyle(
-                                color: Konsts.KBlueAccentColor,
-                                decoration: TextDecoration.underline,
-                                fontWeight: FontWeight.bold
-                              )),
+                                  color: RedopsConsts.KBlueAccentColor,
+                                  decoration: TextDecoration.underline,
+                                  fontWeight: FontWeight.bold)),
                         )
-
                       ],
                     ),
                   ],

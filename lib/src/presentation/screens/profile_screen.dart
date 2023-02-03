@@ -1,58 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:redops_test/src/data/constants.dart';
+import '../maodel/user_model.dart';
 
 class ProfileScreen extends StatelessWidget {
+  User? user;
+
+  ProfileScreen({super.key, this.user});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Konsts.KWiteColor,
+    return Scaffold(backgroundColor: RedopsConsts.KWiteColor,
       body: SingleChildScrollView(
         child: Center(
           child: Column(
-            children: const [
-              SizedBox(
+            children:  [
+              const SizedBox(
                 height: 100,
               ),
-              Text(
+              const Text(
                 "Profile",
                 style: TextStyle(
                     fontSize: 28.0,
                     fontWeight: FontWeight.bold,
-                    color: Konsts.KDarkColor),
+                    color: RedopsConsts.KDarkColor),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Text(
-                "OfferFirst ID #32dd23j",
-                style: TextStyle(
+                user?.uuid ?? "OfferFirst ID #32dd23j",
+                style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
-                    color: Konsts.KDarkColor),
+                    color: RedopsConsts.KDarkColor),
               ),
-              SizedBox(height: 10,),
-              CircleAvatar(radius: 50,backgroundColor: Konsts.KDarkColor,),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
+              const CircleAvatar(radius: 50,backgroundColor: RedopsConsts.KDarkColor,),
+              const SizedBox(height: 10,),
               Text(
-                "Holley Nelson",
-                style: TextStyle(
+               "${user?.firstName ?? "Holley"} ${user?.lastName ?? "Nelson"}",
+                style: const TextStyle(
                     fontSize: 28.0,
                     fontWeight: FontWeight.bold,
-                    color: Konsts.KDarkColor),
+                    color: RedopsConsts.KDarkColor),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
 
               Text(
-                "Hnelson@gmal.com",
-                style: TextStyle(
+               user?.email ??  "Hnelson@gmal.com",
+                style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
-                    color: Konsts.KDarkColor),
+                    color: RedopsConsts.KDarkColor),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Text(
-                "929-222-344",
-                style: TextStyle(
+               user?.phoneNumber ?? "929-222-344",
+                style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
-                    color: Konsts.KDarkColor),
+                    color: RedopsConsts.KDarkColor),
               ),
             ],
           ),
