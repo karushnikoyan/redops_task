@@ -16,29 +16,37 @@ void main() {
 
   );
   List<int> listNumbers=[1,2,3,4,556,4,5,67,8,543,235,6745,78,45365,6643,6,8];
-  func(List<int> list ,int target){
+
+
+  List<int> func(List<int> list ,int target){
+    List<int> a =[];
     print("---------------------------------------------------------------------");
-    list.sort();
+
     print(list);
-    bool _isFind = false;
+
     for(int i = 0;i < list.length;i++){
-      if(_isFind == false){
+
         for(int j = 1;j<list.length;j++){
           if(list[i] + list[j] == target){
+            a.add(i);
+            a.add(j);
             print("i = $i");
             print("j = $j");
-            _isFind = true;
             print("first number is :${list[i]}");
             print("second number is :${list[j]}");
-            break;
+            return  a;
+
           }
         }
-      }
+      // }
     }
-    print("cant find ---------------------------");
+
+      print("cant find ---------------------------");
+
+    return a;
   };
 
-  func(listNumbers,14);
+  print(func(listNumbers,11));
 
 
 }

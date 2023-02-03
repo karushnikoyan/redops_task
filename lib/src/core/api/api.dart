@@ -30,7 +30,6 @@ import '../../presentation/maodel/user_model.dart';
     )) ;
     print(response.data);
     final usr = User.fromJson(response.data);
-
     return usr;
   }
 
